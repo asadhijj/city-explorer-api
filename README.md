@@ -24,7 +24,7 @@ i made two file one for the server(using JS, .env, cors, node express) and the o
 01-01-2001 3:00 am - Application now has a fully-functional express server, with a GET route for the location resource. -->
 
 ## Credit and Collaborations
-<!-- Credits to Bashar Nobeh 
+Credits to Bashar Nobeh 
 
 ***
 Time Estimates
