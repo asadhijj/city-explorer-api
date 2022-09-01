@@ -7,6 +7,9 @@ const getMovies =require ('./Movies')
 server.use(cors());
 const PORT = process.env.PORT;
 
+server.get('/',(req,res) => {
+    res.send ("Aloha Benjamin")
+});
 
 //http://localhost:PORT/weather?lon=lon&lat=lat
 server.get('/weather', getWeather);
