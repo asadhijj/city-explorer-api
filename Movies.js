@@ -1,18 +1,26 @@
 const axios = require('axios');
-
+let myMemory ={};
 
 async function getMovies(req,res) {
     const searchQuery = req.query.searchQuery;
-    const URL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY_MOVIES}&query=${searchQuery}&page=1`;
+
+    if (myMemory[searchQuery] == ! undefined) {
+        res.status(200).send(myMemory[searchQuery])
+    }
+    else {
+        const URL = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.API_KEY_MOVIES}&query=${searchQuery}&page=1`;
   
-    axios.get(URL).then( result => {
-        let sendData = result.data.results.map( file => {
-            return new Movies(file);
+        axios.get(URL).then( result => {
+            let sendData = result.data.results.map( file => {
+                return new Movies(file);
+            })
+            myMemory[searchQuery] = sendData
+            return res.status(200).send(sendData);
+        }).catch(error => {
+            return res.status(404).send(error)
         })
-        return res.status(200).send(sendData);
-    }).catch(error => {
-        return res.status(404).send(error)
-    })
+    }
+
   }
   
 class Movies {

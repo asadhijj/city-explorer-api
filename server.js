@@ -7,6 +7,8 @@ const getMovies =require ('./Movies')
 server.use(cors());
 const PORT = process.env.PORT;
 
+
+
 server.get('/',(req,res) => {
     res.send ("Aloha Benjamin")
 });
